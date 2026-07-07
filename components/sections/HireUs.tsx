@@ -55,8 +55,9 @@ export default function HireUs() {
       });
       setSuccess(t('success'));
       setForm({ name: '', email: '', company: '', projectType: '', description: '', budget: '', timeline: '' });
-    } catch {
-      setError(t('error'));
+    } catch (err: any) {
+      console.error('Firestore Error (HireUs):', err);
+      setError(t('error') + (err.message ? ` (${err.message})` : ''));
     } finally {
       setLoading(false);
     }

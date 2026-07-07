@@ -29,12 +29,13 @@ export default function Support() {
       });
       const data = await res.json();
       if (data.url) {
-        window.open(data.url, '_blank', 'noopener,noreferrer');
+        window.location.href = data.url; // Use same window to avoid popup blockers
       } else {
         throw new Error(data.error || 'Unknown error');
       }
-    } catch {
-      setError('Une erreur est survenue. Veuillez réessayer.');
+    } catch (err: any) {
+      console.error('Support Error:', err);
+      setError(err.message || 'Une erreur est survenue. Veuillez réessayer.');
     } finally {
       setLoading(false);
     }

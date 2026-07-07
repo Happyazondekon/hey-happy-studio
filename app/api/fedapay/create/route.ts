@@ -41,21 +41,26 @@ export async function POST(req: NextRequest) {
     if (!txRes.ok) {
       const err = await txRes.json().catch(() => ({}));
       console.error('FedaPay create transaction error:', JSON.stringify(err));
+      // Extract specific error message if possible
+      const detail = err.message || err.error || JSON.stringify(err);
       return NextResponse.json(
-        { error: `Erreur FedaPay: ${JSON.stringify(err)}` },
+        { error: `FedaPay (Tx): ${detail}` },
         { status: 502 }
       );
     }
 
     const txData = await txRes.json();
     // FedaPay API v1 wraps response in { v1: { transaction: { id, ... } } }
+    // Or sometimes just { transaction: { id } } or { id }
     const txId: number | undefined =
-      txData?.v1?.transaction?.id ?? txData?.transaction?.id ?? txData?.id;
+      txData?.v1?.transaction?.id ??
+      txData?.transaction?.id ??
+      txData?.id;
 
     if (!txId) {
       console.error('FedaPay: unexpected response structure', JSON.stringify(txData));
       return NextResponse.json(
-        { error: 'Structure réponse FedaPay inattendue' },
+        { error: 'Structure réponse FedaPay inattendue (ID manquant)' },
         { status: 502 }
       );
     }
@@ -72,8 +77,9 @@ export async function POST(req: NextRequest) {
     if (!tokenRes.ok) {
       const err = await tokenRes.json().catch(() => ({}));
       console.error('FedaPay get token error:', JSON.stringify(err));
+      const detail = err.message || err.error || JSON.stringify(err);
       return NextResponse.json(
-        { error: `Erreur token FedaPay: ${JSON.stringify(err)}` },
+        { error: `FedaPay (Token): ${detail}` },
         { status: 502 }
       );
     }
@@ -82,7 +88,9 @@ export async function POST(req: NextRequest) {
     // tokenData.url is the direct checkout URL from FedaPay
     // tokenData.token is the token (fallback for URL construction)
     const checkoutUrl: string | undefined =
-      tokenData.url ?? (tokenData.token ? `https://checkout.fedapay.com/${tokenData.token}` : undefined);
+      tokenData.url ??
+      (tokenData?.v1?.token?.url) ??
+      (tokenData.token ? `https://checkout.fedapay.com/${tokenData.token}` : undefined);
 
     if (!checkoutUrl) {
       console.error('FedaPay: no checkout URL in token response', JSON.stringify(tokenData));

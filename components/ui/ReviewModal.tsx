@@ -36,8 +36,9 @@ export default function ReviewModal({ onClose, onSuccess }: ReviewModalProps) {
       });
       onSuccess();
       onClose();
-    } catch {
-      setError(t('error'));
+    } catch (err: any) {
+      console.error('Firestore Error (Review):', err);
+      setError(t('error') + (err.message ? ` (${err.message})` : ''));
     } finally {
       setLoading(false);
     }

@@ -51,8 +51,9 @@ export default function JoinUs() {
       });
       setSuccess(t('success'));
       setForm({ name: '', email: '', role: '', skills: '', portfolio: '', motivation: '' });
-    } catch {
-      setError(t('error'));
+    } catch (err: any) {
+      console.error('Firestore Error (JoinUs):', err);
+      setError(t('error') + (err.message ? ` (${err.message})` : ''));
     } finally {
       setLoading(false);
     }
