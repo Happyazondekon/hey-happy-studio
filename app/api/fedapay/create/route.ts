@@ -50,9 +50,13 @@ export async function POST(req: NextRequest) {
     }
 
     const txData = await txRes.json();
-    // FedaPay API v1 wraps response in { v1: { transaction: { id, ... } } }
-    // Or sometimes just { transaction: { id } } or { id }
+    // FedaPay API can return the transaction in various structures:
+    // - { v1: { transaction: { id } } }
+    // - { "v1/transaction": { id } }  <-- Seen in user logs
+    // - { transaction: { id } }
+    // - { id }
     const txId: number | undefined =
+      txData?.['v1/transaction']?.id ??
       txData?.v1?.transaction?.id ??
       txData?.transaction?.id ??
       txData?.id;
