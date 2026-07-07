@@ -71,27 +71,27 @@ export default function Navbar() {
     <nav
       className="fixed top-0 left-0 right-0 z-40 transition-all duration-300"
       style={{
-        background: scrolled ? 'var(--surface)' : 'transparent',
-        borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
-        backdropFilter: scrolled ? 'blur(12px)' : 'none',
+        background: (scrolled || menuOpen) ? 'var(--surface)' : 'transparent',
+        borderBottom: (scrolled || menuOpen) ? '1px solid var(--border)' : '1px solid transparent',
+        backdropFilter: (scrolled || menuOpen) ? 'blur(12px)' : 'none',
       }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 gap-2">
 
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 shrink-0">
-            <div className="relative w-9 h-9">
+            <div className="relative w-8 h-8 sm:w-9 sm:h-9">
               <Image
                 src="/assets/heyhappy.png"
                 alt="HeyHappy"
                 fill
                 className="object-contain"
-                style={{ mixBlendMode: scrolled && mounted && theme !== 'dark' ? 'multiply' : 'screen' }}
+                style={{ mixBlendMode: (scrolled || menuOpen) && mounted && theme !== 'dark' ? 'multiply' : 'screen' }}
                 priority
               />
             </div>
-            <span className="font-extrabold text-lg transition-colors duration-300" style={{ color: logoColor }}>
+            <span className="font-extrabold text-base sm:text-lg transition-colors duration-300" style={{ color: (scrolled || menuOpen) ? 'var(--text)' : '#ffffff' }}>
               HeyHappy
             </span>
           </a>
@@ -99,18 +99,18 @@ export default function Navbar() {
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
-              <NavLink key={link.href} href={link.href} label={link.label} scrolled={scrolled} />
+              <NavLink key={link.href} href={link.href} label={link.label} scrolled={scrolled || menuOpen} />
             ))}
           </div>
 
           {/* Controls */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
             {/* Theme toggle */}
             {mounted && (
               <button
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                 className="p-2 rounded-xl transition-all hover:bg-white/10"
-                style={{ color: iconColor }}
+                style={{ color: (scrolled || menuOpen) ? 'var(--text-muted)' : 'rgba(255,255,255,0.85)' }}
                 aria-label="Changer de theme"
               >
                 {theme === 'dark' ? (
@@ -128,10 +128,10 @@ export default function Navbar() {
             {/* Lang toggle */}
             <button
               onClick={switchLocale}
-              className="px-3 py-1.5 rounded-full text-xs font-bold border-2 transition-all hover:border-primary hover:text-primary"
+              className="px-2 sm:px-3 py-1.5 rounded-full text-[10px] sm:text-xs font-bold border-2 transition-all hover:border-primary hover:text-primary shrink-0"
               style={{
-                borderColor: scrolled ? 'var(--border)' : 'rgba(255,255,255,0.45)',
-                color: iconColor,
+                borderColor: (scrolled || menuOpen) ? 'var(--border)' : 'rgba(255,255,255,0.45)',
+                color: (scrolled || menuOpen) ? 'var(--text-muted)' : 'rgba(255,255,255,0.85)',
               }}
               aria-label="Changer de langue"
             >
@@ -141,15 +141,15 @@ export default function Navbar() {
             {/* CTA */}
             <a
               href="#support"
-              className="hidden sm:flex bubble-btn bubble-btn-primary px-4 py-2 text-sm"
+              className="hidden sm:flex bubble-btn bubble-btn-primary px-4 py-2 text-sm shrink-0"
             >
               {t('supportBtn')}
             </a>
 
             {/* Mobile hamburger */}
             <button
-              className="md:hidden p-2 rounded-lg transition-colors"
-              style={{ color: iconColor }}
+              className="md:hidden p-2 -mr-1 rounded-lg transition-colors shrink-0"
+              style={{ color: (scrolled || menuOpen) ? 'var(--text-muted)' : 'rgba(255,255,255,0.85)' }}
               onClick={() => setMenuOpen((v) => !v)}
               aria-label="Menu"
             >
