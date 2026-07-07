@@ -166,22 +166,27 @@ export default function Navbar() {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="md:hidden pb-4 border-t" style={{ borderColor: 'var(--border)' }}>
+          <div className="md:hidden pb-6 pt-2 border-t flex flex-col gap-2" style={{ borderColor: 'var(--border)' }}>
             {navLinks.map((link) => (
-              <NavLink
+              <a
                 key={link.href}
                 href={link.href}
-                label={link.label}
-                scrolled={true}
                 onClick={() => setMenuOpen(false)}
-              />
+                className="px-4 py-3 rounded-xl text-base font-semibold transition-colors active:bg-primary/10"
+                style={{ color: 'var(--text)' }}
+              >
+                {link.label}
+              </a>
             ))}
-            <a
-              href="#support"
-              className="bubble-btn bubble-btn-primary w-full mt-3 py-3 text-sm"
-            >
-              {t('supportBtn')}
-            </a>
+            <div className="px-4 pt-2">
+              <a
+                href="#support"
+                onClick={() => setMenuOpen(false)}
+                className="bubble-btn bubble-btn-primary w-full py-3.5 text-center text-sm font-bold block"
+              >
+                {t('supportBtn')}
+              </a>
+            </div>
           </div>
         )}
       </div>

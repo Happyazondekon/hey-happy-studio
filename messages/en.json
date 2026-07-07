@@ -90,7 +90,8 @@
     "minHint": "Minimum 1,000 FCFA",
     "btn": "Support with FedaPay",
     "secure": "Secure local payments via Mobile Money or Card.",
-    "thankYou": "Thank you for your support!"
+    "thankYouTitle": "Donation received!",
+    "thankYou": "Thank you so much for your support! Your contribution helps us tremendously in developing new African experiences."
   },
   "footer": {
     "tagline": "Building digital joy from Benin.",

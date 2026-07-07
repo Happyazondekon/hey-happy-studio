@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
         description: 'Soutien HeyHappy Studio',
         amount,
         currency: { iso: 'XOF' },
-        callback_url: `${siteUrl}/`,
+        callback_url: `${siteUrl}?status=success`,
         customer: { email: 'don@heyhappy.studio' },
       }),
     });

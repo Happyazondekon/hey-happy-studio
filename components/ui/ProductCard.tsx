@@ -36,7 +36,7 @@ export default function ProductCard({ product, index }: { product: Product; inde
         }}
       >
         {/* Image area */}
-        <div className="relative h-44 overflow-hidden" style={{ background: 'var(--bg)' }}>
+        <div className="relative h-40 sm:h-44 overflow-hidden" style={{ background: 'var(--bg)' }}>
           <Image
             src={product.image}
             alt={product.name}
@@ -66,7 +66,7 @@ export default function ProductCard({ product, index }: { product: Product; inde
         </div>
 
         {/* Content */}
-        <div className="flex flex-col flex-1 p-5">
+        <div className="flex flex-col flex-1 p-4 sm:p-5">
           <h3 className="font-bold text-base mb-1" style={{ color: 'var(--text)' }}>
             {product.name}
           </h3>
@@ -75,7 +75,7 @@ export default function ProductCard({ product, index }: { product: Product; inde
           </p>
 
           {!product.isComingSoon && (
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mt-auto">
               {product.playStore && (
                 <a
                   href={product.playStore}

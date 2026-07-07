@@ -10,23 +10,23 @@ export default function About() {
   const t = useTranslations('about');
 
   return (
-    <section id="about" className="py-20 px-4" style={{ background: 'var(--bg)' }}>
-      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <section id="about" className="py-16 sm:py-20 px-4" style={{ background: 'var(--bg)' }}>
+      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-12 items-center">
 
         {/* Left: Story */}
         <ScrollReveal direction="left">
           <div>
             <h2
-              className="text-3xl sm:text-4xl font-extrabold mb-6 leading-tight"
+              className="text-2xl sm:text-4xl font-extrabold mb-6 leading-tight text-center md:text-left"
               style={{ color: 'var(--text)' }}
             >
               {t('title')}{' '}
               <span className="text-primary">{t('titleHighlight')}</span>
             </h2>
-            <p className="leading-relaxed mb-4" style={{ color: 'var(--text-muted)' }}>
+            <p className="leading-relaxed mb-4 text-sm sm:text-base text-center md:text-left" style={{ color: 'var(--text-muted)' }}>
               {t('story')}
             </p>
-            <p className="leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+            <p className="leading-relaxed text-sm sm:text-base text-center md:text-left" style={{ color: 'var(--text-muted)' }}>
               {t('story2')}
             </p>
           </div>
@@ -62,7 +62,7 @@ export default function About() {
             </div>
 
             {/* Tech badges */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 justify-center md:justify-start">
               {techBadges.map((b) => (
                 <span
                   key={b}

@@ -1,17 +1,34 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useSearchParams, useRouter } from 'next/navigation';
 import BubbleButton from '../ui/BubbleButton';
 import ScrollReveal from '../ui/ScrollReveal';
+import SuccessModal from '../ui/SuccessModal';
 
 const PRESETS = [1000, 2500, 5000, 10000];
 
 export default function Support() {
   const t = useTranslations('support');
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
   const [amount, setAmount] = useState('1000');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  useEffect(() => {
+    if (searchParams.get('status') === 'success') {
+      setShowSuccess(true);
+      // Clean up URL
+      const newParams = new URLSearchParams(searchParams.toString());
+      newParams.delete('status');
+      const cleanUrl = window.location.pathname + (newParams.toString() ? `?${newParams.toString()}` : '');
+      router.replace(cleanUrl);
+    }
+  }, [searchParams, router]);
 
   const handleSupport = async () => {
     const num = parseInt(amount, 10);
@@ -129,6 +146,8 @@ export default function Support() {
           </div>
         </ScrollReveal>
       </div>
+
+      <SuccessModal isOpen={showSuccess} onClose={() => setShowSuccess(false)} />
     </section>
   );
 }

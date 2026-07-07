@@ -38,7 +38,7 @@ export default function Hero() {
           <motion.h1
             variants={stagger(0.1)}
             initial="hidden" animate="visible"
-            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-white"
+            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-white px-2"
           >
             {t('title')}{' '}
             <span className="text-primary">{t('titleHighlight')}</span>
@@ -47,7 +47,7 @@ export default function Hero() {
           <motion.p
             variants={stagger(0.25)}
             initial="hidden" animate="visible"
-            className="text-lg max-w-xl leading-relaxed"
+            className="text-base sm:text-lg max-w-xl leading-relaxed px-4"
             style={{ color: 'rgba(255,255,255,0.78)' }}
           >
             {t('subtitle')}
@@ -56,14 +56,14 @@ export default function Hero() {
           <motion.div
             variants={stagger(0.4)}
             initial="hidden" animate="visible"
-            className="flex flex-col sm:flex-row gap-4"
+            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-6 sm:px-0"
           >
-            <a href="#games" className="bubble-btn bubble-btn-primary px-8 py-3.5 text-base">
+            <a href="#games" className="bubble-btn bubble-btn-primary px-8 py-3.5 text-base text-center">
               {t('ctaGames')}
             </a>
             <a
               href="#support"
-              className="bubble-btn px-8 py-3.5 text-base font-bold"
+              className="bubble-btn px-8 py-3.5 text-base font-bold text-center"
               style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', border: '2px solid rgba(255,255,255,0.35)', boxShadow: '0 4px 0 0 rgba(255,255,255,0.12)', backdropFilter: 'blur(8px)' }}
             >
               {t('ctaSupport')}
@@ -73,7 +73,7 @@ export default function Hero() {
           <motion.div
             variants={stagger(0.55)}
             initial="hidden" animate="visible"
-            className="flex gap-3 mt-2"
+            className="flex flex-wrap justify-center gap-3 mt-2"
           >
             {[
               { src: '/assets/MathsCool.webp', alt: 'MathsCool' },
@@ -85,7 +85,7 @@ export default function Hero() {
                 key={app.alt}
                 animate={{ y: [-5, 5, -5] }}
                 transition={{ duration: 2.8 + i * 0.3, repeat: Infinity, ease: 'easeInOut', delay: i * 0.25 }}
-                className="w-11 h-11 rounded-2xl overflow-hidden border"
+                className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl overflow-hidden border"
                 style={{ borderColor: 'rgba(255,255,255,0.2)' }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
