@@ -17,13 +17,12 @@ export default function Footer() {
           {/* Brand */}
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
-              <div className="relative w-8 h-8">
+              <div className="relative w-9 h-9">
                 <Image
                   src="/assets/heyhappy.png"
                   alt="HeyHappy"
                   fill
                   className="object-contain"
-                  style={{ mixBlendMode: 'screen' }}
                 />
               </div>
               <span className="font-extrabold text-lg" style={{ color: 'var(--text)' }}>
