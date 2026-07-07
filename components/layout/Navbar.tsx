@@ -178,15 +178,6 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            <div className="px-4 pt-2">
-              <a
-                href="#support"
-                onClick={() => setMenuOpen(false)}
-                className="bubble-btn bubble-btn-primary w-full py-3.5 text-center text-sm font-bold block"
-              >
-                {t('supportBtn')}
-              </a>
-            </div>
           </div>
         )}
       </div>
