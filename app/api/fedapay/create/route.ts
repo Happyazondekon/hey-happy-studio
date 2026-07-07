@@ -7,7 +7,6 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const amount = Number(body.amount);
 
-    // Server-side validation
     if (!amount || amount < 1000 || amount > 10_000_000) {
       return NextResponse.json(
         { error: 'Montant invalide (minimum 1 000 FCFA)' },
@@ -21,7 +20,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Configuration manquante' }, { status: 500 });
     }
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://heyhappy.vercel.app';
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://hey-happy-studio.vercel.app';
 
     // 1. Create transaction
     const txRes = await fetch(`${FEDAPAY_API}/transactions`, {
@@ -35,24 +34,33 @@ export async function POST(req: NextRequest) {
         amount,
         currency: { iso: 'XOF' },
         callback_url: `${siteUrl}/`,
+        customer: { email: 'don@heyhappy.studio' },
       }),
     });
 
     if (!txRes.ok) {
       const err = await txRes.json().catch(() => ({}));
-      console.error('FedaPay create transaction error:', err);
-      return NextResponse.json({ error: 'Erreur FedaPay (transaction)' }, { status: 502 });
+      console.error('FedaPay create transaction error:', JSON.stringify(err));
+      return NextResponse.json(
+        { error: `Erreur FedaPay: ${JSON.stringify(err)}` },
+        { status: 502 }
+      );
     }
 
     const txData = await txRes.json();
-    const txId: number | undefined = txData.v1?.transaction?.id;
+    // FedaPay API v1 wraps response in { v1: { transaction: { id, ... } } }
+    const txId: number | undefined =
+      txData?.v1?.transaction?.id ?? txData?.transaction?.id ?? txData?.id;
 
     if (!txId) {
-      console.error('FedaPay: no transaction id in response', txData);
-      return NextResponse.json({ error: 'Réponse FedaPay invalide' }, { status: 502 });
+      console.error('FedaPay: unexpected response structure', JSON.stringify(txData));
+      return NextResponse.json(
+        { error: 'Structure réponse FedaPay inattendue' },
+        { status: 502 }
+      );
     }
 
-    // 2. Get checkout token
+    // 2. Generate checkout token — response includes { token, url }
     const tokenRes = await fetch(`${FEDAPAY_API}/transactions/${txId}/token`, {
       method: 'POST',
       headers: {
@@ -63,18 +71,25 @@ export async function POST(req: NextRequest) {
 
     if (!tokenRes.ok) {
       const err = await tokenRes.json().catch(() => ({}));
-      console.error('FedaPay get token error:', err);
-      return NextResponse.json({ error: 'Erreur FedaPay (token)' }, { status: 502 });
+      console.error('FedaPay get token error:', JSON.stringify(err));
+      return NextResponse.json(
+        { error: `Erreur token FedaPay: ${JSON.stringify(err)}` },
+        { status: 502 }
+      );
     }
 
     const tokenData = await tokenRes.json();
-    const token: string | undefined = tokenData.token;
+    // tokenData.url is the direct checkout URL from FedaPay
+    // tokenData.token is the token (fallback for URL construction)
+    const checkoutUrl: string | undefined =
+      tokenData.url ?? (tokenData.token ? `https://checkout.fedapay.com/${tokenData.token}` : undefined);
 
-    if (!token) {
-      return NextResponse.json({ error: 'Token FedaPay manquant' }, { status: 502 });
+    if (!checkoutUrl) {
+      console.error('FedaPay: no checkout URL in token response', JSON.stringify(tokenData));
+      return NextResponse.json({ error: 'URL checkout FedaPay manquante' }, { status: 502 });
     }
 
-    return NextResponse.json({ url: `https://checkout.fedapay.com/${token}` });
+    return NextResponse.json({ url: checkoutUrl });
   } catch (err) {
     console.error('FedaPay API route error:', err);
     return NextResponse.json({ error: 'Erreur serveur interne' }, { status: 500 });
