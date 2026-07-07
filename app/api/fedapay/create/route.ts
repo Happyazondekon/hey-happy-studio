@@ -59,8 +59,9 @@ export async function POST(req: NextRequest) {
 
     if (!txId) {
       console.error('FedaPay: unexpected response structure', JSON.stringify(txData));
+      const responsePreview = JSON.stringify(txData).slice(0, 100);
       return NextResponse.json(
-        { error: 'Structure réponse FedaPay inattendue (ID manquant)' },
+        { error: `Réponse FedaPay inattendue (ID manquant). Reçu: ${responsePreview}` },
         { status: 502 }
       );
     }
