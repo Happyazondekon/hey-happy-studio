@@ -1,0 +1,142 @@
+{
+  "nav": {
+    "games": "Jeux",
+    "about": "À propos",
+    "reviews": "Avis",
+    "support": "Soutien",
+    "joinUs": "Rejoindre",
+    "hireUs": "Collaborer",
+    "supportBtn": "Soutenir"
+  },
+  "hero": {
+    "title": "Nous construisons la prochaine génération de",
+    "titleHighlight": "jeux & apps africains",
+    "subtitle": "Du cœur de Cotonou au monde entier. Nous créons des expériences tactiles et hautes en vibrations qui éduquent et divertissent.",
+    "ctaGames": "Explorer nos jeux",
+    "ctaSupport": "Nous soutenir"
+  },
+  "stats": {
+    "downloads": "téléchargements",
+    "apps": "produits lancés",
+    "rating": "note moyenne",
+    "made": "Fabriqué au Bénin"
+  },
+  "about": {
+    "title": "Notre aventure",
+    "titleHighlight": "indé",
+    "story": "Fondé à Cotonou, HeyHappy est bien plus qu'un studio — c'est un projet de passion. Nous croyons que le jeu peut être un vecteur puissant de changement.",
+    "story2": "En mêlant technologie moderne et storytelling local, nous créons des expériences numériques qui résonnent avec la jeunesse d'aujourd'hui et les innovateurs de demain.",
+    "founderTitle": "FONDATEUR & DÉVELOPPEUR FULL STACK",
+    "founderQuote": "\"Propulsés par la tech moderne et inspirés par nos réalités, nous prouvons chaque jour que depuis Cotonou, un studio indépendant peut concevoir des expériences de classe mondiale qui connectent les communautés.\""
+  },
+  "catalogue": {
+    "title": "The HeyHappy",
+    "titleHighlight": "Arcade",
+    "subtitle": "Des expériences tactiles qui sortent de l'écran.",
+    "comingSoon": "Bientôt",
+    "playStore": "Play Store",
+    "webApp": "Web App",
+    "products": {
+      "mathscool": {
+        "name": "MathsCool",
+        "desc": "Maîtrisez les maths à travers des missions spatiales épiques. Apprendre n'a jamais été aussi fun."
+      },
+      "happygoal": {
+        "name": "HappyGoal",
+        "desc": "La meilleure expérience de foot en rue. Participez aux tournois et améliorez vos skills."
+      },
+      "smartspend": {
+        "name": "SmartSpend",
+        "desc": "La gestion budgétaire rendue physique. Suivez vos dépenses avec une interface drag intuitive."
+      },
+      "autopermis": {
+        "name": "Auto-Permis",
+        "desc": "Réussissez votre permis avec nos quiz gamifiés et scénarios de trafic interactifs."
+      },
+      "collabo": {
+        "name": "Collabo",
+        "desc": "Réseau social pour couples et familles avec jeux interactifs à distance, chat et galerie partagée."
+      },
+      "komiko": {
+        "name": "Komiko",
+        "desc": "Réseau social de blagues. Partagez, découvrez et riez avec toute votre communauté."
+      }
+    }
+  },
+  "reviews": {
+    "title": "Ce que disent",
+    "titleHighlight": "les joueurs",
+    "leaveReview": "Laisser un avis",
+    "modal": {
+      "title": "Laisser un avis",
+      "nameLabel": "Votre nom",
+      "namePlaceholder": "Ex: Yao K.",
+      "messageLabel": "Votre avis",
+      "messagePlaceholder": "Parlez-nous de votre expérience...",
+      "ratingLabel": "Note",
+      "submit": "Publier l'avis",
+      "cancel": "Annuler",
+      "success": "Merci pour votre avis ! Votre retour compte beaucoup.",
+      "error": "Une erreur est survenue. Veuillez réessayer."
+    },
+    "empty": "Soyez le premier à laisser un avis !",
+    "likes": "j'aime"
+  },
+  "support": {
+    "title": "Aidez-nous à aller",
+    "titleHighlight": "encore plus loin",
+    "subtitle": "Chaque contribution nous aide à couvrir les frais serveur, acheter des licences de dev et déployer nos apps sur App Store et Play Store.",
+    "currency": "XOF",
+    "minHint": "Minimum 1 000 FCFA",
+    "btn": "Soutenir avec FedaPay",
+    "secure": "Paiements sécurisés via Mobile Money ou Carte.",
+    "thankYou": "Merci pour votre soutien !"
+  },
+  "footer": {
+    "tagline": "Créer la joie numérique depuis le Bénin.",
+    "studio": "Studio",
+    "contact": "Contact",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "madeIn": "Fabriqué au Bénin avec passion",
+    "rights": "© 2026 HeyHappy. Tous droits réservés."
+  },
+  "joinUs": {
+    "title": "Rejoins",
+    "titleHighlight": "l'équipe",
+    "subtitle": "Tu es développeur, designer ou tu as des compétences qui pourraient enrichir HeyHappy ? On aimerait te connaître.",
+    "namePlaceholder": "Ton nom complet",
+    "emailPlaceholder": "ton@email.com",
+    "roleLabel": "Rôle souhaité",
+    "roles": ["Développeur Flutter", "Développeur Web", "Designer UI/UX", "Game Designer", "Marketing", "Autre"],
+    "skillsLabel": "Tes compétences principales",
+    "skillsPlaceholder": "Flutter, React, Figma, Unity...",
+    "portfolioLabel": "Portfolio / GitHub (facultatif)",
+    "portfolioPlaceholder": "https://github.com/...",
+    "motivationLabel": "Pourquoi rejoindre HeyHappy ?",
+    "motivationPlaceholder": "Dis-nous ce qui te motive...",
+    "submit": "Envoyer ma candidature",
+    "success": "Candidature envoyée. Nous vous contacterons bientôt.",
+    "error": "Une erreur est survenue. Veuillez réessayer."
+  },
+  "hireUs": {
+    "title": "Travaillons",
+    "titleHighlight": "ensemble",
+    "subtitle": "Tu as une idée de jeu, d'app mobile ou de plateforme web ? Notre équipe peut transformer ta vision en réalité.",
+    "namePlaceholder": "Ton nom",
+    "emailPlaceholder": "ton@email.com",
+    "companyLabel": "Entreprise / Organisation (facultatif)",
+    "companyPlaceholder": "Nom de ta startup ou organisation",
+    "projectTypeLabel": "Type de projet",
+    "projectTypes": ["Jeu Mobile", "Application Mobile", "Application Web", "Jeu PC / Console", "Autre"],
+    "descriptionLabel": "Décris ton projet",
+    "descriptionPlaceholder": "Décris ton idée, le problème à résoudre, le public cible...",
+    "budgetLabel": "Budget estimé",
+    "budgets": ["< 500 000 FCFA", "500K – 2M FCFA", "2M – 5M FCFA", "5M – 15M FCFA", "+ 15M FCFA", "À discuter"],
+    "timelineLabel": "Délai souhaité",
+    "timelines": ["< 1 mois", "1 – 3 mois", "3 – 6 mois", "6+ mois", "Flexible"],
+    "submit": "Envoyer ma demande",
+    "success": "Demande reçue. Nous vous répondrons sous 48h.",
+    "error": "Une erreur est survenue. Veuillez réessayer."
+  }
+}

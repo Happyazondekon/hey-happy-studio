@@ -1,0 +1,39 @@
+# Commandes à exécuter UNE PAR UNE dans le terminal
+# (dans C:\Users\ELITEBOOK\Desktop\heyhappy-studio)
+
+# Variables Firebase publiques (NEXT_PUBLIC_ = accessibles côté client)
+vercel env add NEXT_PUBLIC_FIREBASE_API_KEY
+# Quand demandé, entre: AIzaSyBLhZWqgzJih7aBA8A1meklLSEwY2tcgoY
+# Environnements: Production, Preview, Development (sélectionner les 3)
+
+vercel env add NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+# Entre: mathscool-73be7.firebaseapp.com
+
+vercel env add NEXT_PUBLIC_FIREBASE_PROJECT_ID
+# Entre: mathscool-73be7
+
+vercel env add NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+# Entre: mathscool-73be7.firebasestorage.app
+
+vercel env add NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+# Entre: 235827840040
+
+vercel env add NEXT_PUBLIC_FIREBASE_APP_ID
+# Entre: 1:235827840040:web:e44a37df02ecbb1935a11d
+
+# Variables serveur SECRÈTES (jamais préfixées NEXT_PUBLIC_)
+vercel env add FEDAPAY_SECRET_KEY
+# Entre: sk_live_omMqWbA43QOvECP96KAd6a_t
+
+vercel env add ADMIN_PASSWORD
+# Entre: ton-mot-de-passe-admin-choisi (ex: HeyHappy@2026!)
+
+vercel env add FIREBASE_SERVICE_ACCOUNT_KEY
+# Entre: le contenu JSON complet de la clé téléchargée en étape 3
+# (tout sur une seule ligne, copier-coller le JSON entier)
+
+vercel env add NEXT_PUBLIC_SITE_URL
+# Entre: https://heyhappy-studio.vercel.app (l'URL de ton déploiement)
+
+# Lancer le déploiement en production
+vercel --prod

@@ -1,26 +1,131 @@
 @import "tailwindcss";
 
+/* Class-based dark mode for next-themes */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #818CF8;
+  --color-primary-shadow: #4F46E5;
+  --color-violet: #A78BFA;
+  --color-gold: #FFD700;
+  --color-gold-shadow: #C9A800;
+  --color-danger: #FF4D6D;
+  --font-family-sans: 'Poppins', system-ui, sans-serif;
+}
+
+/* Semantic theme tokens — overridden by .dark on <html> */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #F5F5F5;
+  --surface: #FFFFFF;
+  --text: #0A0A14;
+  --text-muted: #6B7280;
+  --border: #E0E0E0;
+  --border-subtle: #F0F0F0;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  --bg: #0A0A14;
+  --surface: #12121E;
+  --text: #F0F0F0;
+  --text-muted: #9CA3AF;
+  --border: #1E1E2E;
+  --border-subtle: #161622;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Poppins', system-ui, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* ===========================
+   BUBBLE BUTTON SYSTEM
+   (same spirit as MathsCool)
+=========================== */
+.bubble-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  transition: transform 80ms ease-out, box-shadow 80ms ease-out;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.bubble-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Primary — Indigo/Violet */
+.bubble-btn-primary {
+  background: #818CF8;
+  color: #FFFFFF;
+  box-shadow: 0 4px 0 0 #4F46E5;
+}
+.bubble-btn-primary:hover:not(:disabled) { filter: brightness(1.08); }
+.bubble-btn-primary:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 0 #4F46E5;
+}
+
+/* Gold */
+.bubble-btn-gold {
+  background: #FFD700;
+  color: #0A0A14;
+  box-shadow: 0 4px 0 0 #C9A800;
+}
+.bubble-btn-gold:hover:not(:disabled) { filter: brightness(1.05); }
+.bubble-btn-gold:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 0 #C9A800;
+}
+
+/* Outline (for dark bg) */
+.bubble-btn-outline {
+  background: transparent;
+  color: var(--text);
+  box-shadow: 0 4px 0 0 var(--border);
+  border: 2px solid var(--border);
+}
+.bubble-btn-outline:hover:not(:disabled) {
+  border-color: #00E5A0;
+  color: #00E5A0;
+  box-shadow: 0 4px 0 0 #00A370;
+}
+.bubble-btn-outline:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 0 var(--border);
+}
+
+/* ===========================
+   CUSTOM SCROLLBAR
+=========================== */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: #818CF8; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #6366F1; }
+
+/* ===========================
+   INPUT FOCUS
+=========================== */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+}
+

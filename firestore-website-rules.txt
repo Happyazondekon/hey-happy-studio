@@ -1,0 +1,50 @@
+    // ==========================================
+    // RÈGLES - SITE WEB HEYHAPPY STUDIO
+    // ==========================================
+
+    // Avis visiteurs (lecture publique, écriture validée)
+    match /website_reviews/{reviewId} {
+      allow read: if true;
+      allow create: if request.resource.data.keys().hasAll(['name', 'message', 'rating', 'likes', 'createdAt'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 1
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.message is string
+        && request.resource.data.message.size() >= 1
+        && request.resource.data.message.size() <= 500
+        && request.resource.data.rating is number
+        && request.resource.data.rating >= 1
+        && request.resource.data.rating <= 5;
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes'])
+        && request.resource.data.likes == resource.data.likes + 1;
+      allow delete: if false;
+    }
+
+    // Candidatures équipe (écriture publique validée, lecture serveur)
+    match /join_requests/{reqId} {
+      allow create: if request.resource.data.keys().hasAll(['name', 'email', 'role', 'motivation', 'createdAt'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.email is string
+        && request.resource.data.email.size() <= 200
+        && request.resource.data.motivation is string
+        && request.resource.data.motivation.size() <= 800;
+      allow read, update, delete: if false;
+    }
+
+    // Demandes de projet (écriture publique validée, lecture serveur)
+    match /hire_requests/{reqId} {
+      allow create: if request.resource.data.keys().hasAll(['name', 'email', 'projectType', 'description', 'createdAt'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.email is string
+        && request.resource.data.email.size() <= 200
+        && request.resource.data.description is string
+        && request.resource.data.description.size() <= 1000;
+      allow read, update, delete: if false;
+    }
+
+    // Donations FedaPay (serveur uniquement via Firebase Admin SDK)
+    match /donations/{donationId} {
+      allow read, write: if false;
+    }
